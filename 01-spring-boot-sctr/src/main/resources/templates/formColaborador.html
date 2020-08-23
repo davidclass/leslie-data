@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="${titulo}"></title>
+
+    <!-- Estilo BOOSTRAP -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">SISTEMA DE CONTROL DE COLABORADORES</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <!-- Link mostrar lista de SCTR Pensiones -->
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/listar/sctrPensiones}">SCTR-P</a>
+            </li>
+
+            <!-- Link mostrar lista de SCTR Salues -->
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/listar/sctrSalues}">SCTR-S</a>
+            </li>
+
+            <!-- Link mostrar lista de Carnet Sanidades -->
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/listar/carnetSanidades}">CARNET-S</a>
+            </li>
+
+            <!-- Link mostrar lista de Inducciones -->
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/listar/inducciones}">INDUCCIONES</a>
+            </li>
+
+            <!-- Link mostrar lista de Documentos -->
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/listar/documentos}">DOCUMENTOS</a>
+            </li>
+
+            <!-- Link mostrar lista de Colaboradores -->
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/listar/colaboradores}">COLABORADORES</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <h1 class="text-secondary border border-success border-top-0 border-left-0 border-right-0" th:text="${titulo}"></h1>
+    <form th:action="@{/form/colaborador}" th:object="${colaborador}" method="post">
+
+
+            <!-- NOMBRE -->
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">NOMBRE</label>
+                <div class="col-sm-6">
+                    <input type="text" th:field="*{nombre}" class="form-control" th:errorclass="'form-control alert-danger'"/>
+                    <small class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" ></small>
+                </div >
+            </div>
+
+            <!-- APELLIDO -->
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">APELLIDO</label>
+                <div class="col-sm-6">
+                    <input type="text" th:field="*{apellido}" class="form-control" th:errorclass="'form-control alert-danger'"/>
+                    <small class="form-text text-danger" th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}" ></small>
+                </div>
+            </div>
+
+            <!-- TIPO DOCUCMENTO -->
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">TIPO DOCUCMENTO</label>
+                <div class="col-sm-6">
+                    <input type="text" th:field="*{documento_id.id}" class="form-control" />
+                    <!--
+                    <small class="form-text text-danger" th:if="${#fields.hasErrors('documento_id')}" th:errors="*{documento_id}" ></small>
+                    -->
+                </div>
+            </div>
+
+            <!-- NUM DOCUCMENTO -->
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">NUM. DOCUCMENTO</label>
+                <div class="col-sm-6">
+                    <input type="text" th:field="*{numeroDoc}" class="form-control" th:errorclass="'form-control alert-danger'"/>
+                    <small class="form-text text-danger" th:if="${#fields.hasErrors('numeroDoc')}" th:errors="*{numeroDoc}" ></small>
+                </div>
+            </div>
+
+            <!-- EMPRESA -->
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">EMPRESA</label>
+                <div class="col-sm-6">
+                    <input type="text" th:field="*{empresa}" class="form-control" th:errorclass="'form-control alert-danger'"/>
+                    <small class="form-text text-danger" th:if="${#fields.hasErrors('empresa')}" th:errors="*{empresa}" ></small>
+                </div>
+            </div>
+
+            <!-- FECHA NACIMIENTO -->
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">FECHA NACIMIENTO</label>
+                <div class="col-sm-6">
+                    <input type="text" th:field="*{fechaNacimiento}" class="form-control" th:errorclass="'form-control alert-danger'"/>
+                    <small class="form-text text-danger" th:if="${#fields.hasErrors('fechaNacimiento')}" th:errors="*{fechaNacimiento}" ></small>
+                </div>
+            </div>
+
+            <!-- INDUCCION -->
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">INDUCCIÓN</label>
+                <div class="col-sm-6">
+                    <input type="number" th:field="*{induccion_id.id}" class="form-control" />
+                    <!--
+                    <small class="form-text text-danger" th:if="${#fields.hasErrors('induccion_id')}" th:errors="*{induccion_id}" ></small>
+                    -->
+                </div>
+            </div>
+
+            <!-- STCTR-S -->
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">STCTR-S</label>
+                <div class="col-sm-6">
+                    <input type="number" th:field="*{sctrs_id.id}" class="form-control" />
+                    <!--
+                    <small class="form-text text-danger" th:if="${#fields.hasErrors('sctrs_id')}" th:errors="*{sctrs_id}" ></small>
+                    -->
+                </div>
+            </div>
+
+            <!-- STCTR-P -->
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">STCTR-P</label>
+                <div class="col-sm-6">
+                    <input type="number" th:field="*{sctrp_id.id}" class="form-control" />
+                    <!--
+                    <small class="form-text text-danger" th:if="${#fields.hasErrors('sctrp_id')}" th:errors="*{sctrp_id}" ></small>
+                    -->
+                </div>
+            </div>
+
+            <!-- CARNET-S -->
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">CARNET-S</label>
+                <div class="col-sm-6">
+                    <input type="number" th:field="*{carnets_id.id}" class="form-control"/>
+                    <!--
+                    <small class="form-text text-danger" th:if="${#fields.hasErrors('carnets_id')}" th:errors="*{carnets_id}" ></small>
+                    -->
+                </div>
+            </div>
+
+            <!-- BOTON AGREGAR -->
+            <div class="form-group">
+                <div class="col-sm-6">
+                    <input type="submit" value="CREAR COLABORADOR" class="btn btn-primary" />
+                </div>
+            </div>
+
+
+        <!-- Usamos Sessiones: SessionAttributes
+        <input type="hidden" th:field="*{id}"/>
+        -->
+    </form>
+</div>
+
+<!-- Orden de los Scrip: jquery, popper, bootstrap -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+</body>
+</html>
